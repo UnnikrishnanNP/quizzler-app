@@ -26,6 +26,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Icon> scoreKeeper = [];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,11 +54,18 @@ class _QuizPageState extends State<QuizPage> {
                 foregroundColor: MaterialStateProperty.resolveWith((state) => Colors.white)
               ),
               child: Text('True'),
-              onPressed: (){},
+              onPressed: (){
+                setState(() {
+                  scoreKeeper.add(
+                    Icon(Icons.check,color: Colors.green,)
+                  );
+                });
+              },
             ),
           ),
         ),
         Expanded(
+
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: TextButton(
@@ -66,10 +74,19 @@ class _QuizPageState extends State<QuizPage> {
                 foregroundColor: MaterialStateProperty.resolveWith((state) => Colors.white)
               ),
               child: Text('False'),
-              onPressed: (){},
+              onPressed: (){
+                setState(() {
+                  scoreKeeper.add(
+                    Icon(Icons.close,color: Colors.red ,)
+                  );
+                });
+              },
             ),
           ),
         ),
+        Row(
+          children:scoreKeeper
+        )
       ],
     );
   }
